@@ -1,3 +1,4 @@
-### AlgorithmPrac
+# AlgorithmPrac
 
-# 1. Greedy Algorithm
+## 1. Greedy Algorithm
+
