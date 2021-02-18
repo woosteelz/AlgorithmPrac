@@ -24,9 +24,11 @@ graph = [[] for _ in range(N+1)]
 
 for _ in range(M):
   a, b = map(int, input().split())
+  # 단방향이 아닌 양방향이기 때문에 양 쪽으로 연결
   graph[a].append(b)
   graph[b].append(a)
 
+# 정점 번호가 작은 것 부터 방문하기 위해 정렬
 for g in graph:
   g.sort()
 
