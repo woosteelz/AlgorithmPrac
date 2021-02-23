@@ -1,3 +1,5 @@
+# 백준 문제번호 1260 DFS와 BFS
+
 from collections import deque
 
 def DFS(graph, V, visited):
