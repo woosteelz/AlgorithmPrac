@@ -12,3 +12,18 @@ arr_max = max(map(max, arr))
 </pre>
 
 min도 마찬가지로 적용하면 된다.
+
+### 2. 2차원 배열의 초기화
+2차원 배열에서 초기화를 할 때,
+<pre>
+<code>
+arr = [[0 * n] * n]
+</pre>
+</code>
+이런식으로 하면 같은 객체로 인식하기 때문에 
+<pre>
+<code>
+arr = [[0 * n] for _ in range(n)]
+</pre>
+</code>
+으로 해야한다.
