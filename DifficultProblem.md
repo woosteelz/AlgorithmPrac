@@ -60,6 +60,7 @@ N을 3회 사용: 333, 3+3+3=9, ...
 + 표(board)의 값은 1또는 0으로만 이루어져 있습니다.
 
 3. 내 풀이
+
 board의 각 원소를 순회하며 DFS 실시... (시간 초과)
 ```python
 from collections import deque
@@ -105,9 +106,10 @@ def solution(board):
 				ans.append(check(visited, board, i, j, N, M))
 	return max(ans) ** 2
 ```
-4. 다른 사람의 풀이
-Dynamic Programming 이용
 
+4. 다른 사람의 풀이
+
+Dynamic Programming 이용
 ```python
 def solution(board):
 	N = len(board)
