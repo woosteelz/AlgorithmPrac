@@ -25,5 +25,5 @@ arr = [[0 * n] * n]
 <code>
 arr = [[0 * n] for _ in range(n)]
 </pre>
-</code>.   
+</code>.    
 으로 해야한다.   
