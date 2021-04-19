@@ -119,4 +119,13 @@ DFS는 두가지 방식으로 구현 가능하다.
 단, BFS와 같이 인접행렬로 구현할 때 O(N^2)의 시간 복잡도를, 
 인접리스트로 구현 할 때 O(N+E)의 시간 복잡도를 가진다.
 
-### 4. 
+### 4. input() VS sys.stdin.readline()
+
+```python
+import sys
+# 입력값 : 알고리즘
+a = sys.stdin.readline()
+b = input()
+```
+a에는 알고리즘\n 이(버퍼가 함께 입력된다.)
+b에는 알고리즘 이 입력된다.
