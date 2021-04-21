@@ -124,3 +124,49 @@ def solution(board):
 			ans = max(board[i])
 	return ans ** 2
 ```
+
+### 3. BOJ - 13549번 숨바꼭질 3
+
+1. 문제
+수빈이는 동생과 숨바꼭질을 하고 있다. 수빈이는 현재 점 N(0 ≤ N ≤ 100,000)에 있고, 동생은 점 K(0 ≤ K ≤ 100,000)에 있다. 수빈이는 걷거나 순간이동을 할 수 있다. 만약, 수빈이의 위치가 X일 때 걷는다면 1초 후에 X-1 또는 X+1로 이동하게 된다. 순간이동을 하는 경우에는 0초 후에 2*X의 위치로 이동하게 된다.
+수빈이와 동생의 위치가 주어졌을 때, 수빈이가 동생을 찾을 수 있는 가장 빠른 시간이 몇 초 후인지 구하는 프로그램을 작성하시오.
+
+2. 입 / 출력
+입력: n k
+출력: 수빈이가 동생을 찾는 가장 빠른시간 출력
+
+3. 내 풀이
+최단시간을 묻는 문제이므로 BFS를 사용했다. 단, 순간이동을 하는 경우는 0초가 소요되므로 queue의 맨 앞에 삽입하여야 한다. 
+
+```python
+# BOJ 13549번 숨바꼭질3
+import sys
+from collections import deque
+
+n, k = map(int, sys.stdin.readline().split())
+visited = [0] * 100001
+queue = deque()
+queue.append(n)
+visited[n] = 1
+
+while queue:
+	curr = queue.popleft()
+	if visited[k]:
+		print(visited[k]-1)
+		break
+	
+	# 3. 순간이동
+	if curr*2<=100000 and not visited[curr*2]:
+		visited[curr*2] = visited[curr]
+		queue.appendleft(curr*2)
+	# 1. 한칸 뒤로
+	if 0<= curr-1 and not visited[curr-1]:
+		visited[curr-1] = visited[curr] + 1
+		queue.append(curr-1)
+	# 2. 한칸 앞으로
+	if curr+1<=100000 and not visited[curr+1]:
+		visited[curr+1] = visited[curr] + 1
+		queue.append(curr+1)
+```
+
+### 4. 

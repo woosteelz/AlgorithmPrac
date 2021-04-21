@@ -1,4 +1,4 @@
-# BOJ 1261번 알고스팟
+# BOJ 13549번 숨바꼭질3
 import sys
 from collections import deque
 
