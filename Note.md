@@ -127,5 +127,89 @@ import sys
 a = sys.stdin.readline()
 b = input()
 ```
-a에는 알고리즘\n 이(버퍼가 함께 입력된다.)
+a에는 알고리즘\n (버퍼가 함께 입력된다.)이, 
 b에는 알고리즘 이 입력된다.
+
+### 5. 알고리즘 문제 풀이시
+
+프로그래머스 점프와 순간이동을 풀면서.  
+처음 문제를 봤을때 BFS를 이용한 풀이라고 생각하고 다른 방법은 생각하지도 않았다. 
+
+그러나 BFS를 사용해 문제를 풀었을때 정답은 맞았지만 시간초과가 떠서 다른 방법을 찾았다. 
+
+그냥 단순히 2로 나누어 나머지가 1일 경우에만 Count하면 된다....
+* 수학문제가 아니다. 충분히 생각하고 코드를 작성하는 습관을 들이자.
+
+### 6. LCS(Longest Common Substring) vs LCS(Longest Common Subsequence)
+
+#### 1. Longest Common Substring
+연속된 공통 문자열을 뜻한다.    
+ex) ABCDEF, GBCDFE => BCD
+
+1. 점화식
+
+	1. 문자열 A와 B를 한글자씩 비교한다.
+	2. 두 문자가 다르면 LCS[i][j]에 0을 저장한다.
+	3. 두 문자가 같다면 LCS[i-1][j-1] 값에 1을 더해 저장한다.
+	4. 위 과정을 반복한다.
+
+```python
+if i == 0 or j == 0: # DP를 위한 마진값 설정
+	LCS[i][j] = 0
+elif s1[i] == s2[j]: # 두 문자열이 같다면
+	LCS[i][j] = LCS[i-1][j-1] + 1
+else: # 두 문자열이 다르다면
+	LCS[i][j] = 0
+```
+2. CODE
+```python
+def LongestCommonSubstring(s1, s2):
+	m, n = len(s2), len(s1)
+	LCS = [[0 for _ in range(m+1)] for _ in range(n+1)] # 2차원 배열 초기화
+	s1, s2 = ' ' + s1, ' ' + s2 # 마진값
+	
+	for i i n range(1, n+1):
+		for j in range(1, m+1):
+			if not s1[j] == s2[i]:
+				LCS[i][j] = 0
+			else:
+				LCS[i][j] = LCS[i-1][j-1] + 1
+
+	return max(map(max, LCS))
+```
+
+#### 2. Longest Common Subsequence
+연속되지 않아도 공통인 최장길이 문자열    
+ex) ABCDEF, GBCDFE => BCDE or BCDF
+
+1. 점화식
+
+	1. 문자열 A와 B를 한글자씩 비교한다.
+	2. 두 문자가 다르면 LCS[i][j]에 max(LCS[i-1][j], LCS[i][j-1])을 저장
+	3. 두 문자가 같다면 LCS[i-1][j-1] 값에 1을 더해 저장한다.
+	4. 위 과정을 반복한다.
+
+```python
+if i == 0 or j == 0: # DP를 위한 마진값 설정
+	LCS[i][j] = 0
+elif s1[i] == s2[j]: # 두 문자열이 같다면
+	LCS[i][j] = LCS[i-1][j-1] + 1
+else: # 두 문자열이 다르다면
+	LCS[i][j] = max(LCS[i-1][j], LCS[i][j-1])
+```
+2. CODE
+```python
+def LongestCommonSubsequence(s1, s2):
+	m, n = len(s2), len(s1)
+	LCS = [[0 for _ in range(m+1)] for _ in range(n+1)] # 2차원 배열 초기화
+	s1, s2 = ' ' + s1, ' ' + s2 # 마진값
+	
+	for i i n range(1, n+1):
+		for j in range(1, m+1):
+			if not s1[j] == s2[i]:
+				LCS[i][j] = max(LCS[i-1][j], LCS[i][j-1])
+			else:
+				LCS[i][j] = LCS[i-1][j-1] + 1
+
+	return max(map(max, LCS))
+```

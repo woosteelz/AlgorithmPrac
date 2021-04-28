@@ -1,28 +1,33 @@
-# BOJ 1261번 알고스팟
+# HackerRank Common Child(Medium)
+#!/bin/python3
+
+import math
+import os
+import random
+import re
 import sys
-from collections import deque
 
-n, k = map(int, sys.stdin.readline().split())
-visited = [0] * 100001
-queue = deque()
-queue.append(n)
-visited[n] = 1
+#
+# Complete the 'commonChild' function below.
+#
+# The function is expected to return an INTEGER.
+# The function accepts following parameters:
+#  1. STRING s1
+#  2. STRING s2
+#
 
-while queue:
-	curr = queue.popleft()
-	if visited[k]:
-		print(visited[k]-1)
-		break
+# DP를 이용한 LCS 
+def commonChild(s1, s2):
+	LCS = [[0 for _ in range(len(s1)+1)] for _ in range(len(s2)+1)]
+	s1 = ' ' + s1
+	s2 = ' ' + s2
+	for i in range(1, len(s1)):
+		for j in range(1, len(s2)):
+			if not s1[j] == s2[i]:
+				LCS[i][j] = max(LCS[i-1][j], LCS[i][j-1])
+			elif s1[j] == s2[i]:
+				LCS[i][j] = LCS[i-1][j-1] + 1
 	
-	# 3. 순간이동
-	if curr*2<=100000 and not visited[curr*2]:
-		visited[curr*2] = visited[curr]
-		queue.appendleft(curr*2)
-	# 1. 한칸 뒤로
-	if 0<= curr-1 and not visited[curr-1]:
-		visited[curr-1] = visited[curr] + 1
-		queue.append(curr-1)
-	# 2. 한칸 앞으로
-	if curr+1<=100000 and not visited[curr+1]:
-		visited[curr+1] = visited[curr] + 1
-		queue.append(curr+1)
+	return max(map(max, LCS))
+
+print(commonChild('ABCD', 'ABDC'))
