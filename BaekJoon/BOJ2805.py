@@ -20,4 +20,5 @@ while start <= end:
         start = mid + 1
     elif temp < height:
         end = mid - 1
+
 print(max(ans))
