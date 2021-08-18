@@ -2,6 +2,7 @@
 num = int(input())
 arr = list(map(int, input().split()))
 
+
 ans = [-1 for _ in range(num)]
 for i in range(num-1):
     for j in range(i+1, num):
@@ -9,7 +10,7 @@ for i in range(num-1):
             ans[i] = arr[j]
             break
 
-print(ans)
+print(*ans)
 
 # naive하게 푸는 경우 시간초과를 피할 수 없다.
 # 따라서 stack을 이용
@@ -29,4 +30,4 @@ for i in range(num-1):
     else:
         stack.append(i)
 
-print(ans)
+print(*ans)
