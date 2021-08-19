@@ -21,12 +21,11 @@ stack = []
 for i in range(num-1):
     if arr[i] < arr[i+1]:
         ans[i] = arr[i+1]
-        if stack:
-            while stack:
-                if arr[stack[-1]] < arr[i+1]:
-                    ans[stack.pop()] = arr[i+1]
-                else:
-                    break
+        while stack:
+            if arr[stack[-1]] < arr[i+1]:
+                ans[stack.pop()] = arr[i+1]
+            else:
+                break
     else:
         stack.append(i)
 
