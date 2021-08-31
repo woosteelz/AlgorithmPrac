@@ -34,3 +34,22 @@ def commonChild(s1, s2):
 
 
 # print(commonChild('ABCD', 'ABDC'))
+
+for tc in range(int(input())):
+    n = int(input())
+    led = list(map(int, input().split()))
+    cnt = 0
+    for i in range(n):
+        if led[i] == 1:
+            k, idx = i + 1, i + 1
+            while idx <= n:
+                if led[idx - 1] == 1:
+                    led[idx - 1] = 0
+                else:
+                    led[idx - 1] = 1
+                idx += k
+            cnt += 1
+        if sum(led) == 0:
+            break
+
+    print('#{} {}'.format(tc+1, cnt))
