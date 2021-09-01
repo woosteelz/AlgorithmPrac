@@ -2,14 +2,15 @@
 from collections import deque
 
 n = int(input())
-picture = [list(input()) for _ in range(n)]
+picture_normal = [list(input()) for _ in range(n)]
 visited_normal = [[False for _ in range(n)] for _ in range(n)]
 picture_dis = [[' ' for _ in range(n)] for _ in range(n)]
 visited_dis = [[False for _ in range(n)] for _ in range(n)]
 
+# 적록색약을 위한 새로운 그림 생성
 for i in range(n):
     for j in range(n):
-        picture_dis[i][j] = picture[i][j] if not picture[i][j] == 'R' else 'G'
+        picture_dis[i][j] = picture_normal[i][j] if not picture_normal[i][j] == 'R' else 'G'
 
 dir_x = [0, 1, 0, -1]
 dir_y = [1, 0, -1, 0]
@@ -28,10 +29,10 @@ for i in range(n):
             visited_normal[i][j] = True
             while normal_queue:
                 curr_x, curr_y = normal_queue.popleft()
-                curr_normal = picture[curr_x][curr_y]
+                curr_normal = picture_normal[curr_x][curr_y]
                 for k in range(4):
                     next_x, next_y = curr_x + dir_x[k], curr_y + dir_y[k]
-                    if 0 <= next_x < n and 0 <= next_y < n and not visited_normal[next_x][next_y] and picture[next_x][next_y] == curr_normal:
+                    if 0 <= next_x < n and 0 <= next_y < n and not visited_normal[next_x][next_y] and picture_normal[next_x][next_y] == curr_normal:
                         visited_normal[next_x][next_y] = True
                         normal_queue.append([next_x, next_y])
 
