@@ -36,7 +36,7 @@ while True:
                     temp.append([visited[curr_x][curr_y], next_x, next_y])
 
     if temp:
-        temp.sort(key=lambda x: (x[0], x[1], x[2]))
+        temp.sort()
         ans += temp[0][0]
         eat += 1
         if eat == curr_size:

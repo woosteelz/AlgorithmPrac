@@ -7,13 +7,13 @@ def cal_can(number, loc):
         loc = 11
     if number > loc:
         if number - loc >= 3:
-            can += (number - loc) / 3
+            can += (number - loc) // 3
             can += (number - loc) % 3
         else:
             can = number - loc
-    elif loc - number:
-        if number - loc >= 3:
-            can += (loc - number) / 3
+    elif loc > number:
+        if loc - number >= 3:
+            can += (loc - number) // 3
             can += (loc - number) % 3
         else:
             can = loc - number
