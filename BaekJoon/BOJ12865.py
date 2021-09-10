@@ -8,21 +8,23 @@ for _ in range(N):
     weight.append(w)
     price.append(p)
 
-ans = [[0 for _ in range(K)] for _ in range(N)]
+ans = [[0 for _ in range(K+1)] for _ in range(N+1)]
 
-for i in range(N):
-    for w in range(K):
-        if weight[i] <= w:
-            ans[i][w] = max(price[i] + ans[i][w], ans[i][w])
+for i in range(1, N+1):
+    for w in range(1, K+1):
+        if weight[i-1] <= w:
+            ans[i][w] = max(price[i-1] + ans[i-1]
+                            [w - weight[i-1]], ans[i-1][w])
         else:
             ans[i][w] = ans[i-1][w]
 
 pprint.pprint(ans)
 
-print(ans[N-1][K-1])
+print(ans[N][K])
 
 
 '''
+# pseudo code
 for w = 0 to W
     b[0, w] = 0
 for i = 0 to N
