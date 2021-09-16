@@ -28,6 +28,7 @@ while queue:
                 visited[next_x][next_y][cnt -
                                         1] = visited[curr_x][curr_y][cnt] + 1
                 queue.append([next_x, next_y, cnt - 1])
+
     for i in range(4):
         next_x, next_y = curr_x + dir_x[i], curr_y + dir_y[i]
         if 0 <= next_x < h and 0 <= next_y < w and not visited[next_x][next_y][cnt] and not maze[next_x][next_y]:
