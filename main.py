@@ -35,21 +35,55 @@ def commonChild(s1, s2):
 
 # print(commonChild('ABCD', 'ABDC'))
 
-for tc in range(int(input())):
-    n = int(input())
-    led = list(map(int, input().split()))
-    cnt = 0
-    for i in range(n):
-        if led[i] == 1:
-            k, idx = i + 1, i + 1
-            while idx <= n:
-                if led[idx - 1] == 1:
-                    led[idx - 1] = 0
-                else:
-                    led[idx - 1] = 1
-                idx += k
-            cnt += 1
-        if sum(led) == 0:
-            break
+def stupid(arr):
 
-    print('#{} {}'.format(tc+1, cnt))
+    if len(arr) == 2 and arr[0] > arr[1]:
+        arr[0], arr[1] = arr[1], arr[0]
+        print('#')
+    elif len(arr) == 1:
+        return
+    else:
+        m = 2*len(arr) // 3
+        stupid(arr[:m-1])
+        stupid(arr[len(arr) - m:])
+        stupid(arr[:m-1])
+
+
+visited = [False for _ in range(1000)]
+graph = [[] for _ in range(1000)]
+
+
+def dfs(stack):
+    if not stack:
+        return
+    curr = stack.pop(-1)
+    if not graph[curr]:
+        print()
+    for node in graph[curr]:
+        if not visited[node]:
+            visited[node] = True
+            stack.append(node)
+            if len(graph[curr]) == 1:
+                print('----', end='')
+            elif node == graph[curr][-1]:
+                print('L--', end='')
+            else:
+                print('+--', end='')
+            print(my_print(node), end=' ')
+            dfs(stack)
+
+
+def my_print(num):
+    temp = str(num)
+    return '[' + '0' * (3 - len(temp)) + temp + ']'
+
+
+for _ in range(5):
+    a, b = map(int, input().split())
+    graph[a].append(b)
+
+stack = []
+stack.append(30)
+visited[30] = True
+print('[030]--', end=' ')
+dfs(stack)
