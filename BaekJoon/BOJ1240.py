@@ -13,16 +13,13 @@ for _ in range(n-1):
 queue = deque()
 
 for _ in range(m):
-    visited = [False for _ in range(n+1)]
     start, end = map(int, input().split())
-    visited[start] = True
     queue.append(start)
     ans = [0 for _ in range(n+1)]
     while queue:
         curr = queue.popleft()
         for node in graph[curr]:
-            if not visited[node]:
+            if not ans[node]:
                 queue.append(node)
                 ans[node] += dist[curr][node] + ans[curr]
-                visited[node] = True
     print(ans[end])
