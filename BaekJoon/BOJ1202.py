@@ -1,5 +1,4 @@
-# 백준 문제번호 1202번 보석 도둑
-
+# 1202번 보석 도둑
 import sys
 
 N, K = map(int, sys.stdin.readline().split())
@@ -13,17 +12,13 @@ for _ in range(K):
 
 jewel.sort(key=lambda x: (x[1], x[0]), reverse=True)
 bags.sort()
-
 value = 0
 
-while jewel:
-    temp = jewel.pop(0)
-    if sum(bags):
-        for i in range(len(bags)):
-            if bags[i] >= temp[0]:
-                value += temp[1]
-                bags[i] = 0
-                break
-    bags.sort()
+while bags:
+    if jewel[0][0] <= bags[-1]:
+        value += jewel[0][1]
+        jewel.pop(0)
+        bags.pop(0)
+
 
 print(value)
