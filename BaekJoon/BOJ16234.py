@@ -41,7 +41,10 @@ while True:
     for i in range(N):
         for j in range(N):
             if not visited[i][j]:
-                bfs(i, j)
+                for k in range(4):
+                    if 0 <= i + dir_x[k] < N and 0 <= j + dir_y[k] < N and L <= abs(population[i][j] - population[i + dir_x[k]][j + dir_y[k]]) <= R:
+                        bfs(i, j)
+                        break
 
     if flag:
         break
