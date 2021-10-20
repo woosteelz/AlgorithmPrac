@@ -22,6 +22,7 @@ def spread():
 
 
 def activate():
+    # 윗부분
     x, y = air_cleaner[0]
     for i in range(x-2, -1, -1):
         room[i+1][0] = room[i][0]
@@ -33,6 +34,7 @@ def activate():
         room[x][j+1] = room[x][j]
     room[x][1] = 0
 
+    # 아랫부분
     x, y = air_cleaner[1]
     for i in range(x+2, R):
         room[i-1][0] = room[i][0]
