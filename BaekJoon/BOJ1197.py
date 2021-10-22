@@ -8,6 +8,7 @@ V, E = map(int, input().split())
 graph = [[] for _ in range(V + 1)]
 visited = [False for _ in range(V + 1)]
 key = [INF for _ in range(V + 1)]
+
 for _ in range(E):
     a, b, c = map(int, input().split())
     graph[a].append([b, c])
