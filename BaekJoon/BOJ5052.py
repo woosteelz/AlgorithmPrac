@@ -62,9 +62,9 @@ for _ in range(int(input())):
 
     print('YES') if solution(strings) else print('NO')
 
-    for i in range(1, N):
-        if strings[i-1] == strings[:len(strings[i-1])]:
-            print('NO')
-            break
-    else:
-        print('YES')
+    # for i in range(1, N):
+    #     if strings[i-1] == strings[:len(strings[i-1])]:
+    #         print('NO')
+    #         break
+    # else:
+    #     print('YES')
