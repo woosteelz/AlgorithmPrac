@@ -7,13 +7,13 @@ def solution(numbers, target):
     return answer
 
 
-def dfs(arr, _sum, cnt, target):
+def dfs(arr, total, cnt, target):
     global answer
-    if cnt == len(arr) and _sum == target:
+    if cnt == len(arr) and total == target:
         answer += 1
         return
     if cnt == len(arr):
         return
 
-    dfs(arr, _sum + arr[cnt], cnt+1, target)
-    dfs(arr, _sum - arr[cnt], cnt+1, target)
+    dfs(arr, total + arr[cnt], cnt+1, target)
+    dfs(arr, total - arr[cnt], cnt+1, target)
