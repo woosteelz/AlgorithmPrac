@@ -9,7 +9,6 @@ ans_min = float('inf')
 
 def calculate(idx, total, operation):
     global ans_max, ans_min
-    # print(operation)
 
     if idx == N:
         ans_max = max(ans_max, total)
