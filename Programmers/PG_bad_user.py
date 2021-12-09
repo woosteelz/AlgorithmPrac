@@ -21,9 +21,11 @@ def solution(user_id, banned_id):
 
     for user in users:
         if check(user, banned_id):
-            user = set(user)
+            user = list(user)
+            user.sort()
             if user not in answer:
                 answer.append(user)
+    print(answer)
 
     return len(answer)
 
