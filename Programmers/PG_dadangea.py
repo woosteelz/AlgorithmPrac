@@ -11,9 +11,11 @@ def solution(enroll, referral, seller, amount):
             answer[node_num] += price - income
             price = income
             curr = referral[node_num]
-            if curr == "-":
-                break
-            if income == 0:
+            if curr == "-" or income == 0:
                 break
 
     return answer
+
+
+solution(["john", "mary", "edward", "sam", "emily", "jaimie", "tod", "young"], ["-", "-", "mary",
+                                                                                "edward", "mary", "mary", "jaimie", "edward"], ["sam", "emily", "jaimie", "edward"], [2, 3, 5, 4])

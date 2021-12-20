@@ -2,7 +2,6 @@ from collections import deque
 
 
 def solution(N, road, K):
-    answer = 0
     visited = [100000000 for _ in range(N+1)]
     town = [[] for _ in range(N+1)]
     queue = deque()
@@ -22,5 +21,5 @@ def solution(N, road, K):
     for i in range(2, len(visited)):
         if visited[i] <= K:
             ans += 1
-    print(visited)
+    # print(visited)
     return ans
