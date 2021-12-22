@@ -5,6 +5,7 @@ def solution(N, number):
     if N == number:
         return 1
     for i in range(2, 9):
+        print(arr)
         arr[i].add(int(temp*i))
         for j in range(1, i):
             for a in arr[i-j]:
@@ -18,3 +19,6 @@ def solution(N, number):
                     if number in arr[i]:
                         return i
     return -1
+
+
+solution(5, 12)
