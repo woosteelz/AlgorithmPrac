@@ -6,7 +6,8 @@ const solution = (id_list, report, k) => {
     let mail = {};
 
     report.map((temp) => {
-        let { a, b } = temp.split();
+        let [a, b] = temp.split(" ");
+
         if (a in mail) {
             mail[a].add(b)
         } else {
@@ -17,22 +18,25 @@ const solution = (id_list, report, k) => {
             singo[b].add(a)
         } else {
             singo[b] = new Set();
-            mail[b].add(a);
+            singo[b].add(a);
         }
     })
 
     for (let key in singo) {
-        if (singo[key].length >= k) stop.push(key)
+        if (singo[key].size >= k) stop.push(key)
     }
 
-    console.log(mail)
-
-    // id_list.map((id) => {
-    //     let cnt = 0;
-    //     for (let item of mail[id]) {
-    //         if (item in stop) cnt++;
-    //     }
-    //     ans.push(cnt);
-    // })
+    id_list.map((id) => {
+        let cnt = 0;
+        if (mail[id]) {
+            mail[id].forEach(value => {
+                console.log(value)
+                if (stop.includes(value)) cnt++;
+            })
+        }
+        ans.push(cnt);
+    })
     return ans
 }
+
+console.log(solution(["muzi", "frodo", "apeach", "neo"], ["muzi frodo", "apeach frodo", "frodo neo", "muzi neo", "apeach muzi"], 2))

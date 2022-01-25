@@ -19,7 +19,7 @@ const solution = (n, k) => {
     const PrimeList = num.split("0");
 
     PrimeList.map(function (num) {
-        if (num != '0' && isPrimeNum(Number(num))) ans++;
+        if (num && isPrimeNum(Number(num))) ans++;
     })
     return ans;
 }
