@@ -8,7 +8,7 @@ function solution(n, times) {
         let mid = parseInt((left + right) / 2)
         let cnt = 0
 
-        // map은 중간 탈출 불가능
+
         for (let i = 0; i < times.length; i++) {
             cnt += parseInt(mid / times[i])
             if (cnt >= n) break
